@@ -62,25 +62,38 @@
 					<input class="input100" type="text" name="jml_penjualan" placeholder="Masukkan jumlah penjualan (RP)">
 				</div>
 
-				<div class="wrap-input100 validate-input bg1 " data-validate = "Jenis pengeluaran kosong" >
+				<div class="wrap-input100 validate-input bg1 " data-validate = "Jenis penjualan kosong" >
 					<span class="label-input100">JENIS PENJUALAN *</span>
 					<input class="input100" type="text" name="jns_penjualan" placeholder="Masukkan jenis penjualan ">
 				</div>
 
 				
-
-<!-- 				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Needed Services *</span>
+				<div class="wrap-input100 input100-select bg1">
+					<span class="label-input100">PEMBELI</span>
 					<div>
-						<select class="js-select2" name="service">
-							<option>Please chooses</option>
-							<option>eCommerce Bussiness</option>
-							<option>UI/UX Design</option>
-							<option>Online Services</option>
+						<select class="js-select2" name="jns_pembeli">
+							<option>Silahkan pilih</option>
+							<option>Penjual Kerupuk</option>
+							<option>Pembeli Perorangan</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
-				</div> -->
+				</div> 
+
+				<div class="wrap-input100 bg1 rs1-wrap-input100">
+					<span class="label-input100">NAMA PEMBELI</span>
+					<input class="input100" type="text" name="nm_pembeli" placeholder="Masukkan nama pembeli">
+				</div>
+
+				<div class="wrap-input100 bg1 rs1-wrap-input100">
+					<span class="label-input100">NO. TELP PEMBELI</span>
+					<input class="input100" type="text" name="no_telp_pembeli" placeholder="Masukkan no. telepon">
+				</div>
+
+				<div class="wrap-input100 bg1">
+					<span class="label-input100">ALAMAT PEMBELI</span>
+					<input class="input100" type="text" name="almt_pembeli" placeholder="Masukkan alamat pembeli">
+				</div>
 
 				<div class="wrap-input100 bg0" >
 					<span class="label-input100">Catatan</span>
