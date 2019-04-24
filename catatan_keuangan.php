@@ -32,12 +32,10 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<br>
-		</div>
+		<div class="row"><br></div>
 		<div class="row">
 			<div class="col-sm-4">
-				<button class="btn btn-danger">Halaman Awal</button>
+				<a id="ha"  class="btn btn-danger" href="index.php">Halaman Awal</a>
 			</div>
 			<div class="col-sm-8">
 				<h2>Catatan Keuangan</h2>
@@ -47,8 +45,11 @@
 			<div class="col-sm-12">
 				<br>
 				<ul class="nav nav-tabs">
+          <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#ckg">Catatan Keuangan</a>
+            </li>
     				<li class="nav-item">
-      					<a class="nav-link active" data-toggle="tab" href="#cpj">Catatan Penjualan</a>
+      					<a class="nav-link" data-toggle="tab" href="#cpj">Catatan Penjualan</a>
     				</li>
     				<li class="nav-item">
       					<a class="nav-link" data-toggle="tab" href="#cpg">Catatan Pengeluaran</a>
@@ -58,7 +59,21 @@
     				</li>
   				</ul>
   				<div class="tab-content">
-    				<div id="cpj" class="container tab-pane active"><br>
+            <div id="ckg" class="container tab-pane active">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <br>
+                    <h5>
+                      Selamat datang...
+                    </h5>
+                    <br>
+                    <p>Disini Anda bisa melihat catatan penjualan, melihat catatan pengeluaran, dan mencetak laporan catatan keuangan.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    				<div id="cpj" class="container tab-pane fade"><br>
     					<div class="container-fluid">
     						<div class="row">
     							<div class="col-sm-2">
@@ -71,22 +86,32 @@
 									</div>
     							</div>
     							<div class="col-sm-10">
-    								<table class="table table-hover table-striped">
-      									<thead>
-      										<tr>
-      											<th>Tanggal</th>
-      											<th>Prediksi Penjualan</th>
-      											<th>Riil Penjualan</th>
-      										</tr>	
-      									</thead>
-      									<tbody>
-      										<tr class="<?php if (mt_rand(0, 5) <= 2) echo "table-danger" ?>">
-      											<td>23/4/2019</td>
-      											<td>Rp. 120000</td>
-      											<td>Rp. 120000</td>
-      										</tr>
-      									</tbody>
-      								</table>
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th>Tanggal</th>
+                            <th>Kerupuk</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Pembeli</th>
+                            <th>Info Pembeli</th>
+                            <th>Catatan</th>
+                          </tr> 
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>23/4/2019</td>
+                            <td>Standar</td>
+                            <td>60</td>
+                            <td>Rp. 120000</td>
+                            <td>(Distributor) Jatmiko</td>
+                            <td>(0801010101) Jl. Melati IV</td>
+                            <td>-</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
     							</div>
     						</div>
     					</div>
@@ -104,12 +129,14 @@
 									</div>
     							</div>
     							<div class="col-sm-10">
-    								<table class="table table-hover table-striped">
+                    <div class="table-responsive">
+    								  <table class="table table-hover table-striped">
       									<thead>
       										<tr>
       											<th>Tanggal</th>
-      											<th>Jumlah Pengeluaran</th>
-      											<th>Keterangan</th>
+      											<th>Total</th>
+                            <th>Peruntukan</th>
+      											<th>Catatan</th>
       										</tr>	
       									</thead>
       									<tbody>
@@ -117,10 +144,12 @@
       											<td>23/4/2019</td>
       											<td>Rp. 100000</td>
       											<td>bahan baku</td>
+                            <td>-</td>
       										</tr>
       									</tbody>
       								</table>
-    							</div>
+    							 </div>
+                </div>
     						</div>
     					</div>
     				</div>
@@ -138,34 +167,230 @@
     							</div>
     							<div class="col-sm-8">
     								<center>
-    									<h3>Laporan Catatan Keuangan</h3>	
-    								</center>
-    								
-    								Bulan : 4<br>
-    								Tahun : 2019
-    								<table class="table table">
-      									<thead>
-      										<tr>
-      											<th>Tanggal</th>
-      											<th>Penjualan</th>
-      											<th>Pengeluaran</th>
-      											<th>Keuntungan</th>
-      										</tr>	
-      									</thead>
-      									<tbody>
-      										<tr>
-      											<td>23/4/2019</td>
-      											<td>Rp. 120000</td>
-      											<td>Rp. 100000</td>
-      											<td>Rp. 20000</td>
-      										</tr>
-      									</tbody>
-      								</table>
-    							</div>
+                      <h5>Kerupuk Sahabat</h5>
+                      <br>
+                      <h3>Laporan Catatan Keuangan</h3> 
+                      <br>
+                      <h6>Per 23 April 2019</h6>
+                    </center>
+                      <br>
+                      <div class="table-responsive">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th>Tanggal</th>
+                              <th>Penjualan</th>
+                              <th>Pengeluaran</th>
+                              <th>Keuntungan</th>
+                            </tr> 
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td>23/4/2019</td>
+                              <td>Rp. 120000</td>
+                              <td>Rp. 100000</td>
+                              <td>Rp. 20000</td>
+                            </tr>
+                            <tr>
+                              <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                              <th><center>Total</center></th>
+                                <td>Rp. 120000</td>
+                                <td>Rp. 100000</td>
+                                <td>Rp. 20000</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
     							<div class="col-sm-2">
-    								<button class="btn btn-info">
-    									Cetak
-    								</button>
+                    <br>
+                    <center>
+                      <button style="width: 50%" class="btn btn-info" onclick="window.open('print.php');">
+                      Cetak
+                      </button>  
+                    </center>
     							</div>
     						</div>
     					</div>
@@ -205,6 +430,22 @@
 			});
 		})
 	</script>
+  <script>
+        //open recently visited tab, reseted when click "Halaman Awal"
+        $(document).ready(function () {
+            $('#ha').click(function(){
+              localStorage.clear();
+            });
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                localStorage.setItem('lastTab', $(this).attr('href'));
+                $('h2').text($(this).text());
+            });
+            var lastTab = localStorage.getItem('lastTab');
+            if (lastTab) {
+              $('[href="' + lastTab + '"]').tab('show');
+            }
+        })
+    </script>
 <!--===============================================================================================-->
 	<script src="vendor/daterangepicker/moment.min.js"></script>
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
