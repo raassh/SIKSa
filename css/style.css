@@ -55,3 +55,49 @@ input {
 	transition: box-shadow .5s ease;
 }
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+[canvas=container],
+[off-canvas] {
+    padding: 10px 20px;
+}
+
+[class*=js-] {
+    cursor: pointer;
+}
+
+.btn-slide {
+	width: 100%; 
+	margin-bottom: 10px;
+}
+
+.link-slide {
+	text-decoration: none; 
+	color: white;
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #33A3EB;
+    color: white;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+ 
+.video-container video, .video-container object, .video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
