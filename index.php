@@ -1,59 +1,41 @@
-<?php 
-include('koneksi.php');
-include('proseslogin.php');
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
-<style>
-.myButton {
-	-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
-	-webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
-	box-shadow: 0px 0px 0px 2px #9fb4f2;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
-	background:-moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-	background:-webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-	background:-o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-	background:-ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
-	background-color:#7892c2;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	border-radius:10px;
-	border:1px solid #4e6096;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:19px;
-	padding:12px 37px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #283966;
-}
-.myButton:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
-	background:-moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-	background:-webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-	background:-o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-	background:-ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
-	background-color:#476e9e;
-}
-.myButton:active {
-	position:relative;
-	top:1px;
-}
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
 
-</style>
+	<title>Home</title>
 </head>
 <body style="margin-top: 100px; margin-left: 50px">
-	<div><center><button type="button" onclick="window.location.href='catat_pengeluaran.php'" style="height: 100px; width: 800px" class="myButton">Catat Pengeluaran</button></center></div>
-	<div><center><button type="button" onclick="window.location.href='catat_penjualan.php'" style="height: 100px; width: 800px" class="myButton">Catat Penjualan</button></center></div>
-	<div><center><button type="button" onclick="window.location.href='catatan_keuangan.php'" style="height: 100px; width: 800px" class="myButton">Catatan Keuangan!</button></center></div>
-	<div><center><button type="button" onclick="window.location.href='proseslogin.php?logout'" style="height: 100px; width: 800px" class="myButton">Log Out!</button></center></div>
+	<section>
+  	<div>
+      <center>
+      		<div>
+        		<p>
+              <div class="btn btn-primary btn-lg" href="pilih_materi.html" role="button" style="width: 700px" ><img src="images/FieldNote.png" width="80" height="80" alt=""/>
+                Catat Pemasukan
+              </div>
+            </p>
+          </div>
+      <div>
+        		<p><div class="btn btn-primary btn-lg" href="pilih_materi.html" role="button" style="width: 700px"><img src="images/Calculator_icon.png" width="80" height="80" alt=""/> Catat Pengeluaran</div></p>
+      </div>
+
+      <div>
+        		<p><div class="btn btn-primary btn-lg" href="pilih_materi.html" role="button" style="width: 700px"><img src="images/graph.png" width="80" height="80" alt="" style="margin-left: 40px" />Lihat catatan Penjualan</div></p>
+      </div>
+
+      <div>
+            <p><div class="btn btn-primary btn-lg" href="'proseslogin.php?logout'" role="button" style="width: 700px"> LogOut</div></p>
+      </div>
+      </center>
+</div>
+    </section>
 </body>
 </html>
