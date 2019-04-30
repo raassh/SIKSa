@@ -1,7 +1,12 @@
 $(function() {
   $( ".calendar" ).datepicker({
-		dateFormat: 'dd/mm/yy',
-		firstDay: 1
+		dateFormat: 'yy-mm-dd',
+		firstDay: 1,
+		onSelect: function(d, dtp) {
+
+			$('#tanggal').val(d);
+			$('#tanggal_label').text(d);
+		}
 	});
 	
 	$(document).on('click', '.date-picker .input', function(e){

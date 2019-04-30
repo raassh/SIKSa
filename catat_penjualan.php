@@ -1,3 +1,9 @@
+<?php 
+include('koneksi.php');
+include('proseslogin.php');
+
+if(login_check()){
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +41,8 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form">
+			<form class="contact100-form validate-form" method="post" action="proses_penjualan.php">
+				<input id="tanggal" type="hidden" name="tanggal" value="" />
 				<span class="contact100-form-title">
 					Catat Penjualan
 				</span>
@@ -44,12 +51,13 @@
 					<span class="label-input100">TANGGAL *</span>
 					  <div class="date-picker">
 					  	<div class="input">
-					  		<div class="result">Select Date: <span></span></div>
+					  		<div id="tanggal_label" class="result">Select Date:</div>
 					  		<button><i class="fa fa-calendar"></i></button>
 					  	</div>
 					  	<div class="calendar"></div>
 					  </div>
 				</div>
+				
 
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
 					<span class="label-input100">BANYAK KERUPUK</span>
@@ -63,8 +71,8 @@
 				</div>
 
 				<div class="wrap-input100 validate-input bg1 " data-validate = "Jenis penjualan kosong" >
-					<span class="label-input100">JENIS PENJUALAN *</span>
-					<input class="input100" type="text" name="jns_penjualan" placeholder="Masukkan jenis penjualan ">
+					<span class="label-input100">JENIS KERUPUK *</span>
+					<input class="input100" type="text" name="jns_kerupuk" placeholder="Masukkan jenis penjualan ">
 				</div>
 
 				
@@ -73,8 +81,8 @@
 					<div>
 						<select class="js-select2" name="jns_pembeli">
 							<option>Silahkan pilih</option>
-							<option>Penjual Kerupuk</option>
-							<option>Pembeli Perorangan</option>
+							<option value="p_kerupuk">Penjual Kerupuk</option>
+							<option value="p_orang">Pembeli Perorangan</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
@@ -101,7 +109,7 @@
 				</div>
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
+					<button class="contact100-form-btn" name="jual">
 						<span>
 							Submit
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -178,7 +186,9 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
+	<script>
+		$('#result span').val(tgl);
+	</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
@@ -191,3 +201,12 @@
 
 </body>
 </html>
+<?php }
+	else{
+          echo '<script type="text/javascript">
+                alert("Silahkan login terlebih dahulu.");
+                window.location.href="login.php";
+            </script>';
+        }
+
+ ?>

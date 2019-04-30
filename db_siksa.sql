@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2019 at 06:39 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Apr 30, 2019 at 05:23 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `siksa`
+-- Database: `db_siksa`
 --
 
 -- --------------------------------------------------------
@@ -39,10 +39,10 @@ CREATE TABLE `pembeli` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengeluran`
+-- Table structure for table `pengeluaran`
 --
 
-CREATE TABLE `pengeluran` (
+CREATE TABLE `pengeluaran` (
   `Id_pengeluaran` int(13) NOT NULL,
   `tgl` date NOT NULL,
   `jumlah` int(9) NOT NULL,
@@ -57,13 +57,25 @@ CREATE TABLE `pengeluran` (
 --
 
 CREATE TABLE `penjualan` (
-  `Id_penjualan` int(12) NOT NULL,
-  `Tgl` date NOT NULL,
-  `bnyk_krupuk` int(9) NOT NULL,
-  `jum_penjualan` int(9) NOT NULL,
-  `id_pembeli` int(12) NOT NULL,
+  `id_penjualan` int(12) NOT NULL,
+  `tgl` date NOT NULL,
+  `jml_krupuk` int(9) NOT NULL,
+  `jml_penjualan` int(13) NOT NULL,
+  `jns_kerupuk` varchar(15) NOT NULL,
+  `jns_pembeli` varchar(15) NOT NULL,
+  `nm_pembeli` varchar(25) NOT NULL,
+  `no_telp` int(13) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
   `catatan` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_penjualan`, `tgl`, `jml_krupuk`, `jml_penjualan`, `jns_kerupuk`, `jns_pembeli`, `nm_pembeli`, `no_telp`, `alamat`, `catatan`) VALUES
+(0, '2019-04-30', 0, 0, 'tidak ada', '', '0', 0, 'tidak ada', 'tidak ada'),
+(10001, '2019-04-30', 12, 12333, 'biasa', 'p_kerupuk', 'and', 1233, 'gba ', 'sip');
 
 -- --------------------------------------------------------
 
@@ -94,17 +106,17 @@ ALTER TABLE `pembeli`
   ADD PRIMARY KEY (`Id_pembeli`);
 
 --
--- Indexes for table `pengeluran`
+-- Indexes for table `pengeluaran`
 --
-ALTER TABLE `pengeluran`
+ALTER TABLE `pengeluaran`
   ADD PRIMARY KEY (`Id_pengeluaran`);
 
 --
 -- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  ADD PRIMARY KEY (`Id_penjualan`),
-  ADD KEY `id_pembeli` (`id_pembeli`);
+  ADD PRIMARY KEY (`id_penjualan`),
+  ADD KEY `id_pembeli` (`nm_pembeli`);
 
 --
 -- Indexes for table `user`

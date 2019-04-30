@@ -1,7 +1,10 @@
+<?php
+  include "koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Catat Penjualan</title>
+	<title>Catatan Keuangan</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -29,16 +32,33 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" href="css/date_style.css">
 <!--===============================================================================================-->
+<style type="text/css">
+  option, select {
+    font-family: Poppins-Regular;
+  }
+  .input-group-addon {
+    background-color: rgb(131,146,167); 
+    color: white
+  }
+  #ha, a, button {
+    font-family: Montserrat-Medium;
+    font-size: 10pt
+  }
+  label {
+    font-family: Montserrat-SemiBold; 
+    font-size: 10pt
+  }
+</style>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row"><br></div>
 		<div class="row">
-			<div class="col-sm-4">
-				<a id="ha"  class="btn btn-danger" href="index.php">Halaman Awal</a>
+			<div class="col-sm-2">
+				<a id="ha" style="border-radius: 50px; padding-right: 36px" class="btn btn-danger" href="index.php"><i class="fa fa-long-arrow-left m-l-7"></i> Halaman Awal</a>
 			</div>
-			<div class="col-sm-8">
-				<h2>Catatan Keuangan</h2>
+			<div class="col-sm-10">
+				<h2 style="font-family: Montserrat-Black; font-weight: bold;">Catatan Keuangan</h2>
 			</div>
 		</div>
 		<div class="row">
@@ -64,11 +84,9 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <br>
-                    <h5>
-                      Selamat datang...
-                    </h5>
+                    <h5 style="font-family: Montserrat-SemiBold">Selamat datang...</h5>
                     <br>
-                    <p>Disini Anda bisa melihat catatan penjualan, melihat catatan pengeluaran, dan mencetak laporan catatan keuangan.</p>
+                    <p style="font-family: Montserrat-Medium">Disini Anda bisa melihat catatan penjualan, melihat catatan pengeluaran, dan mencetak laporan catatan keuangan.</p>
                   </div>
                 </div>
               </div>
@@ -77,17 +95,110 @@
     					<div class="container-fluid">
     						<div class="row">
     							<div class="col-sm-2">
-    								<div class="form-group">
-  										<label for="sel1">Bulan/Tahun :</label>
-  										<select class="form-control" id="sel1">
-    										<option>4/2019</option>
-    										<option>3/2019</option>
-  										</select>
-									</div>
+                    <?php
+                      $penjualan = mysqli_query($conn, "SELECT * FROM penjualan LEFT JOIN pembeli ON penjualan.id_pembeli = pembeli.id_pembeli");
+                          if (isset($_POST['cpj_show'])) {
+                            $cpj_b = $_POST['cpj_bln'];
+                            $cpj_t = $_POST['cpj_thn'];
+                          }
+                          else{
+                            $cpj_b = date("m");
+                            $cpj_t = date("Y");
+                          }
+                    ?>
+                    <form action="" method="post">
+                      <div class="form-group">
+                      <span style="border-radius: 3px; margin-bottom: 1px; width: 87%" class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                      <div class="form-inline">
+                        <div>
+                          <label>Bulan</label>
+                          <select name="cpj_bln" class="form-control">
+                          <?php 
+                            if (!isset($_POST['cpj_show'])){
+                          ?>
+                            <option value="<?php echo date('m', time()) ?>"><?php echo date('m', time()) ?></option>
+                            <option disabled value="">---</option>
+                          <?php
+                            for ($i=1; $i <= 12 ; $i++) { 
+                          ?>
+                              <option value="<?php echo date('m', mktime(0, 0, 0, $i, 10)) ?>"><?php echo date('m', mktime(0, 0, 0, $i, 10)) ?></option>
+                          <?php
+                            }
+                          ?>
+                          <?php
+                            }
+                            else{
+                          ?>
+                              <option value="<?php echo $cpj_b ?>"><?php echo $cpj_b ?></option>
+                              <option disabled value="">---</option>
+                          <?php
+                              for ($i=1; $i <= 12 ; $i++) { 
+                          ?>
+                              <option value="<?php echo date('m', mktime(0, 0, 0, $i, 10)) ?>"><?php echo date('m', mktime(0, 0, 0, $i, 10)) ?></option>
+                          <?php
+                            }}
+                          ?>
+                        </select>
+                        </div>
+                        <div>
+                          <label>Tahun</label>
+                          <select name="cpj_thn" class="form-control">
+                          <?php
+                            if (!isset($_POST['cpj_show'])){
+                          ?>
+                          <option value="<?php echo date('Y', time()) ?>"><?php echo date('Y', time()) ?></option>
+                          <option disabled value="">-----</option>
+                          <?php
+                            $thn = array();
+                            while($u_thn = mysqli_fetch_array($penjualan)){
+                              $thn[] = date("Y", strtotime($u_thn['Tgl']));
+                            }
+                            array_unique($thn);
+                            rsort($thn);
+                            foreach($thn as $thns){
+                          ?>
+                          <option value="<?php echo $thns ?>"><?php echo $thns ?></option>
+                          <?php
+                            }}
+                            else{
+                          ?>
+                          <option value="<?php echo $cpj_t ?>"><?php echo $cpj_t ?></option>
+                          <option disabled value="">-----</option>
+                          <?php
+                            $thn = array();
+                            while($u_thn = mysqli_fetch_array($penjualan)){
+                              $thn[] = date("Y", strtotime($u_thn['Tgl']));
+                            }
+                            array_unique($thn);
+                            rsort($thn);
+                            foreach($thn as $thns){
+                          ?>
+                          <option value="<?php echo $thns ?>"><?php echo $thns ?></option>
+                          <?php
+                            }}
+                          ?>
+                        </select>
+                        </div>
+                      </div>
+                      <input class="btn btn-primary" style="border-radius: 50px; margin: 5px 0px 0px 15px; width: 113px; font-family: Montserrat-Medium; font-size: 10pt; cursor: pointer" type="submit" name="cpj_show" value="Tampilkan">
+                  </div>
+                    </form>
     							</div>
     							<div class="col-sm-10">
                     <div class="table-responsive">
-                      <table class="table table-hover table-striped">
+                      <table class="table table-striped">
+                        <?php
+                          $f_penjualan = mysqli_query($conn, "SELECT * FROM penjualan LEFT JOIN pembeli ON penjualan.id_pembeli = pembeli.id_pembeli WHERE MONTH(Tgl) = '".$cpj_b."' AND YEAR(Tgl) = '".$cpj_t."'");
+                          $cek = mysqli_num_rows($f_penjualan);
+                          if ($cek <= 0) {
+                            echo "<h5 style='font-family: Montserrat-SemiBold'>Maaf... :(</h5>
+                                  <br>
+                                  <p style='font-family: Montserrat-Medium'>Data penjualan pada bulan ".$cpj_b.", tahun ".$cpj_t." tidak ditemukan.</p>";
+                          }
+                        else{
+                        ?>
                         <thead>
                           <tr>
                             <th>Tanggal</th>
@@ -100,15 +211,21 @@
                           </tr> 
                         </thead>
                         <tbody>
+                        <?php
+                          while ($data = mysqli_fetch_array($f_penjualan)) {
+                        ?>
                           <tr>
-                            <td>23/4/2019</td>
-                            <td>Standar</td>
-                            <td>60</td>
-                            <td>Rp. 120000</td>
-                            <td>(Distributor) Jatmiko</td>
-                            <td>(0801010101) Jl. Melati IV</td>
-                            <td>-</td>
+                            <td><?php echo $data['Tgl']; ?></td>
+                            <td><?php echo $data['Tgl'] ?></td>
+                            <td><?php echo $data['bnyk_krupuk'] ?></td>
+                            <td><?php echo $data['jum_penjualan'] ?></td>
+                            <td><?php echo "(".$data['jenis'].") ".$data['nama'] ?></td>
+                            <td><?php echo "(".$data['tlp'].") ".$data['alamat'] ?></td>
+                            <td><?php echo $data['catatan'] ?></td>
                           </tr>
+                        <?php
+                          }}
+                        ?>
                         </tbody>
                       </table>
                     </div>
@@ -120,17 +237,111 @@
       					<div class="container-fluid">
     						<div class="row">
     							<div class="col-sm-2">
-    								<div class="form-group">
-  										<label for="sel1">Bulan/Tahun :</label>
-  										<select class="form-control" id="sel1">
-    										<option>4/2019</option>
-    										<option>3/2019</option>
-  										</select>
-									</div>
+    								<?php
+                      $pengeluaran = mysqli_query($conn, "SELECT * FROM pengeluran");
+                          if (isset($_POST['cpg_show'])) {
+                            $cpg_b = $_POST['cpg_bln'];
+                            $cpg_t = $_POST['cpg_thn'];
+                          }
+                          else{
+                            $cpg_b = date("m");
+                            $cpg_t = date("Y");
+                          }
+                    ?>
+                    <form action="" method="post">
+                      <div class="form-group">
+                      <span style="border-radius: 3px; margin-bottom: 1px; width: 87%" class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                      <div class="form-inline">
+                        <div>
+                          <label>Bulan</label>
+                          <select name="cpg_bln" class="form-control">
+                          <?php 
+                            if (!isset($_POST['cpg_show'])){
+                          ?>
+                            <option value="<?php echo date('m', time()) ?>"><?php echo date('m', time()) ?></option>
+                            <option disabled value="">---</option>
+                          <?php
+                            for ($i=1; $i <= 12 ; $i++) { 
+                          ?>
+                              <option value="<?php echo date('m', mktime(0, 0, 0, $i, 10)) ?>"><?php echo date('m', mktime(0, 0, 0, $i, 10)) ?></option>
+                          <?php
+                            }
+                          ?>
+                          <?php
+                            }
+                            else{
+                          ?>
+                              <option value="<?php echo $cpg_b ?>"><?php echo $cpg_b ?></option>
+                              <option disabled value="">---</option>
+                          <?php
+                              for ($i=1; $i <= 12 ; $i++) { 
+                          ?>
+                              <option value="<?php echo date('m', mktime(0, 0, 0, $i, 10)) ?>"><?php echo date('m', mktime(0, 0, 0, $i, 10)) ?></option>
+                          <?php
+                            }}
+                          ?>
+                        </select>
+                        </div>
+                        <div>
+                          <label>Tahun</label>
+                          <select name="cpg_thn" class="form-control">
+                          <?php
+                            if (!isset($_POST['cpg_show'])){
+                          ?>
+                          <option value="<?php echo date('Y', time()) ?>"><?php echo date('Y', time()) ?></option>
+                          <option disabled value="">-----</option>
+                          <?php
+                            $thn = array();
+                            while($u_thn = mysqli_fetch_array($pengeluaran)){
+                              $thn[] = date("Y", strtotime($u_thn['tgl']));
+                            }
+                            array_unique($thn);
+                            rsort($thn);
+                            foreach($thn as $thns){
+                          ?>
+                          <option value="<?php echo $thns ?>"><?php echo $thns ?></option>
+                          <?php
+                            }}
+                            else{
+                          ?>
+                          <option value="<?php echo $cpg_t ?>"><?php echo $cpg_t ?></option>
+                          <option disabled value="">-----</option>
+                          <?php
+                            $thn = array();
+                            while($u_thn = mysqli_fetch_array($pengeluaran)){
+                              $thn[] = date("Y", strtotime($u_thn['tgl']));
+                            }
+                            array_unique($thn);
+                            rsort($thn);
+                            foreach($thn as $thns){
+                          ?>
+                          <option value="<?php echo $thns ?>"><?php echo $thns ?></option>
+                          <?php
+                            }}
+                          ?>
+                        </select>
+                        </div>
+                      </div>
+                      <input class="btn btn-primary" style="border-radius: 50px; margin: 5px 0px 0px 15px; width: 113px; font-family: Montserrat-Medium; font-size: 10pt; cursor: pointer" type="submit" name="cpg_show" value="Tampilkan">
+                  </div>
+                    </form>
     							</div>
     							<div class="col-sm-10">
                     <div class="table-responsive">
-    								  <table class="table table-hover table-striped">
+    								  <table class="table table-striped">
+                      <?php
+                          $f_pengeluaran = mysqli_query($conn, "SELECT * FROM pengeluran WHERE MONTH(tgl) = '".date("m", mktime(0, 0, 0, $cpg_b, 10))."' AND YEAR(tgl) = '".date("Y", mktime(0, 0, $cpg_t, 0, 10))."'");
+                          $cek = mysqli_num_rows($f_pengeluaran);
+                          if ($cek <= 0) {
+                            echo "<h5 style='font-family: Montserrat-SemiBold'>Maaf... :(</h5>
+                                  <br>
+                                  <p style='font-family: Montserrat-Medium'>Data pengeluaran pada bulan ".$cpg_b.", tahun ".$cpg_t." tidak ditemukan.</p>";
+                          }
+                        else{
+                        ?>
+                      ?>
       									<thead>
       										<tr>
       											<th>Tanggal</th>
@@ -140,12 +351,18 @@
       										</tr>	
       									</thead>
       									<tbody>
+                        <?php
+                          while ($data = mysqli_fetch_array($f_pengeluaran)){
+                        ?>
       										<tr>
-      											<td>23/4/2019</td>
-      											<td>Rp. 100000</td>
-      											<td>bahan baku</td>
-                            <td>-</td>
+      											<td><?php echo $data['tgl']; ?></td>
+      											<td><?php echo $data['jumlah']; ?></td>
+      											<td><?php echo $data['jenis']; ?></td>
+                            <td><?php echo $data['catatan']; ?></td>
       										</tr>
+                        <?php
+                          }}
+                        ?>
       									</tbody>
       								</table>
     							 </div>
@@ -157,13 +374,30 @@
       					<div class="container-fluid">
     						<div class="row">
     							<div class="col-sm-2">
-    								<div class="form-group">
-  										<label for="sel1">Bulan/Tahun :</label>
-  										<select class="form-control" id="sel1">
-    										<option>4/2019</option>
-    										<option>3/2019</option>
-  										</select>
-									</div>
+    								<form action="" method="post">
+                      <div class="form-group">
+                      <span style="border-radius: 3px; margin-bottom: 1px; width: 82%" class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                      <div class="form-inline">
+                        <div>
+                          <label>Bulan</label>
+                          <select name="lck_bln" class="form-control" onchange="">
+                          <option>4</option>
+                          <option>3</option>
+                        </select>
+                        </div>
+                        <div>
+                          <label>Tahun</label>
+                          <select name="lck_thn" class="form-control">
+                          <option>2019</option>
+                          <option>2019</option>
+                        </select>
+                        </div>
+                      </div>
+                      <input class="btn btn-primary" style="border-radius: 50px; margin-top: 5px; width: 113px; font-family: Montserrat-Medium; font-size: 10pt; cursor: pointer" type="submit" name="lck_show" value="Tampilkan">
+                  </div>
+                    </form>
     							</div>
     							<div class="col-sm-8">
     								<center>
@@ -387,10 +621,11 @@
     							<div class="col-sm-2">
                     <br>
                     <center>
-                      <button style="width: 50%" class="btn btn-info" onclick="window.open('print.php');">
-                      Cetak
+                      <button style="border-radius: 50px; width: 120px; font-family: Montserrat-Medium; font-size: 10pt" class="btn btn-info" onclick="window.open('print.php');">
+                      <i class="fa fa-print"></i> Cetak
                       </button>  
                     </center>
+                    <br>
     							</div>
     						</div>
     					</div>
