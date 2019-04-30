@@ -1,7 +1,12 @@
 $(function() {
   $( ".calendar" ).datepicker({
 		dateFormat: 'dd/mm/yy',
-		firstDay: 1
+		firstDay: 1,
+		onSelect: function(d, dtp) {
+
+			$('#tgl_penjualan').val(d);
+			$('#tgl_penjualan_label').text(d);
+		}
 	});
 	
 	$(document).on('click', '.date-picker .input', function(e){
