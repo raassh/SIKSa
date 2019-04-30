@@ -43,7 +43,7 @@
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100">
 					<span class="label-input100">TANGGAL *</span>
 					  <div>
-					  	<input type="Date" name="tgl" class="date-picker">
+					  	select date:<input type="Date" name="tgl" class="date-picker">
 					  </div>
 				</div>
 
