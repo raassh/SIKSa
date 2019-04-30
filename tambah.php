@@ -11,7 +11,7 @@
         $jml = $_POST['jml_pengeluaran'];
         $jns = $_POST['jns_pengeluaran'];
         $cttn = $_POST['catatan'];
-        $tgl = $_POST['tgl'];
+        $tgl = $_POST['tanggal'];
         mysqli_query($conn, "INSERT INTO pengeluran VALUES('$kodeBarang','$tgl','$jml','$jns','$cttn')");
         header("location:catat_pengeluaran.php");
      

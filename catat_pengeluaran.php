@@ -36,16 +36,22 @@
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" action="tambah.php" method="post">
+				<input type="hidden" name="tanggal" id="tanggal" value="" />
 				<span class="contact100-form-title">
 					Catat Pengeluaran
 				</span>
 
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100">
 					<span class="label-input100">TANGGAL *</span>
-					  <div>
-					  	select date:<input type="Date" name="tgl" class="date-picker">
+					  <div class="date-picker">
+					  	<div class="input">
+					  		<div id="tanggal" class="result">Select Date: <span></span></div>
+					  		<button><i class="fa fa-calendar"></i></button>
+					  	</div>
+					  	<div class="calendar"></div>
 					  </div>
 				</div>
+
 
 				<div class="wrap-input100 bg1 rs1-wrap-input100">
 					<span class="label-input100">JUMLAH</span>
