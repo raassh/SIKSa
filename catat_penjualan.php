@@ -41,8 +41,8 @@ if(login_check()){
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" method="post" action="proses_catat_penjualan.php">
-				<input id="tgl_penjualan" type="hidden" name="tgl_penjualan" value="" />
+			<form class="contact100-form validate-form" method="post" action="proses_penjualan.php">
+				<input id="tanggal" type="hidden" name="tanggal" value="" />
 				<span class="contact100-form-title">
 					Catat Penjualan
 				</span>
@@ -51,7 +51,7 @@ if(login_check()){
 					<span class="label-input100">TANGGAL *</span>
 					  <div class="date-picker">
 					  	<div class="input">
-					  		<div id="tgl_penjualan_label" class="result">Select Date:</div>
+					  		<div id="tanggal_label" class="result">Select Date:</div>
 					  		<button><i class="fa fa-calendar"></i></button>
 					  	</div>
 					  	<div class="calendar"></div>
@@ -72,7 +72,7 @@ if(login_check()){
 
 				<div class="wrap-input100 validate-input bg1 " data-validate = "Jenis penjualan kosong" >
 					<span class="label-input100">JENIS KERUPUK *</span>
-					<input class="input100" type="text" name="jns_penjualan" placeholder="Masukkan jenis penjualan ">
+					<input class="input100" type="text" name="jns_kerupuk" placeholder="Masukkan jenis penjualan ">
 				</div>
 
 				
@@ -81,8 +81,8 @@ if(login_check()){
 					<div>
 						<select class="js-select2" name="jns_pembeli">
 							<option>Silahkan pilih</option>
-							<option>Penjual Kerupuk</option>
-							<option>Pembeli Perorangan</option>
+							<option value="p_kerupuk">Penjual Kerupuk</option>
+							<option value="p_orang">Pembeli Perorangan</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
@@ -109,7 +109,7 @@ if(login_check()){
 				</div>
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
+					<button class="contact100-form-btn" name="jual">
 						<span>
 							Submit
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>

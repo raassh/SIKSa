@@ -1,11 +1,11 @@
 $(function() {
   $( ".calendar" ).datepicker({
-		dateFormat: 'dd/mm/yy',
+		dateFormat: 'yy-mm-dd',
 		firstDay: 1,
 		onSelect: function(d, dtp) {
 
-			$('#tgl_penjualan').val(d);
-			$('#tgl_penjualan_label').text(d);
+			$('#tanggal').val(d);
+			$('#tanggal_label').text(d);
 		}
 	});
 	
