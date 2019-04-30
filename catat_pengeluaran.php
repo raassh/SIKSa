@@ -35,7 +35,7 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form">
+			<form class="contact100-form validate-form" action="tambah.php" method="post">
 				<span class="contact100-form-title">
 					Catat Pengeluaran
 				</span>
@@ -45,7 +45,7 @@
 					  <div class="date-picker">
 					  	<div class="input">
 					  		<div class="result">Select Date: <span></span></div>
-					  		<button><i class="fa fa-calendar"></i></button>
+					  		<button"><i class="fa fa-calendar"></i></button>
 					  	</div>
 					  	<div class="calendar"></div>
 					  </div>
@@ -83,7 +83,7 @@
 				</div>
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
+					<button class="contact100-form-btn" type="submit" name="Submit">
 						<span>
 							Submit
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
@@ -170,6 +170,5 @@
 
   gtag('config', 'UA-23581568-13');
 </script>
-
 </body>
 </html>
