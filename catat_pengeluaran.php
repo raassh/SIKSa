@@ -42,12 +42,8 @@
 
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100">
 					<span class="label-input100">TANGGAL *</span>
-					  <div class="date-picker">
-					  	<div class="input">
-					  		<div class="result">Select Date: <span></span></div>
-					  		<button"><i class="fa fa-calendar"></i></button>
-					  	</div>
-					  	<div class="calendar"></div>
+					  <div>
+					  	<input type="Date" name="tgl" class="date-picker">
 					  </div>
 				</div>
 
